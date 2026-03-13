@@ -3,11 +3,9 @@ title: "Robuste Regression: Theil-Sen-Schätzer"
 author: "Philipp Stadler, Simon Langegger, Niklas Breitfuss"
 format:
   revealjs:
-    theme: simple
     slide-number: true
     incremental: true
     transition: fade
-editor: visual
 ---
 
 ## Warum robuste Regression?
