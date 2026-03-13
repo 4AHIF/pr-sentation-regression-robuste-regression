@@ -1,0 +1,55 @@
+---
+title: "Robuste Regression: Theil-Sen-Schätzer"
+author: "Philipp Stadler, Simon Langegger, Niklas Breitfuss"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    incremental: true
+    transition: fade
+editor: visual
+---
+
+## Warum robuste Regression?
+
+- Lineare Regression ist empfindlich gegenüber Ausreißern
+- In vielen Anwendungen (Messfehler, Sensoren, Ökonomie, Umwelt) sind Ausreißer unvermeidbar; man braucht Verfahren, die trotzdem verlässliche Trends liefern.
+- Robuste Regression minimiert den Einfluss von Ausreißern
+
+## Grundidee des Theil‑Sen‑Schätzers
+
+- Theil‑Sen ist ein Verfahren für einfache lineare Regression y = a + b*x
+- Berechnet die Steigung b als Median aller Paarweise-Steigungen zwischen Punkten
+- Der Achsenabschnitt a wird so gewählt, dass die Anpassungslinie ungefähr gleich viele Punkte oberhalb und unterhalb hat
+
+## Algorithmus in 5 Schritten
+
+1. Alle Punktepaaren \((i,j)\) mit \(i < j\) und \(x_i \neq x_j\) bilden.
+2. Für jedes Paar die Steigung \(s_{ij}\) berechnen.
+3. Median aller \(s_{ij}\) als Steigung \(\hat{b}\) wählen.
+4. Für jeden Punkt \(a_i = y_i - \hat{b} x_i\) berechnen.
+5. Median der \(a_i\) als Achsenabschnitt \(\hat{a}\) wählen.
+
+---
+
+## Mini-Beispiel
+
+Datensätze:
+
+- \((1, 2)\)
+- \((2, 3)\)
+- \((3, 100)\)  (klarer Ausreißer)
+- \((4, 5)\)
+
+Intuition:
+
+- OLS wird stark in Richtung des Ausreißers \((3, 100)\) gezogen.
+- Theil-Sen basiert auf Medianen und ist deutlich stabiler.
+
+---
+
+## Anwendungszenarien
+
+- Umweltwissenschaften: z.B. Temperaturtrends mit Messfehlern
+- Ökonomie: z.B. Einkommensdaten mit extremen Werten
+- Medizin: z.B. Regressionsanalyse mit fehlerhaften Messungen
